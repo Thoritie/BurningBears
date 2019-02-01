@@ -1,25 +1,44 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Menu, Segment, Card } from 'semantic-ui-react'
 
 class App extends Component {
+  state = { activeItem: 'home =' }
+
+  handleClick = ( e, { name } ) => this.setState(
+    {
+      activeItem: name
+    })
+
   render() {
+    const { activeItem } = this.state
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Segment>
+            <Menu>
+              <Menu.Item 
+                name='home' 
+                active={activeItem === 'home'}
+                onclick={this.handleClick}
+               />
+
+              <Menu.Menu position='right'>
+                <Menu.Item>
+                  Platform Developments
+                </Menu.Item>
+              </Menu.Menu>
+              
+            </Menu>
+
+            <Card
+              fluid
+              header='Graph'
+              meta='Hello'
+              description='Dest'
+            />
+
+
+        </Segment>
       </div>
     );
   }
